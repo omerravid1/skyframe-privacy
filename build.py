@@ -1,7 +1,7 @@
 """Builds the Skyframe pages: one header and footer, each page's body below. Run: python3 build.py"""
 
 EMAIL = "skyframe1992@gmail.com"
-UPDATED = "November 7, 2026"
+UPDATED = "November 10, 2026"
 
 PAGES = [
     ("index.html", "Privacy policy"),
@@ -50,8 +50,9 @@ def page(filename, title, body):
 
 
 PRIVACY = f"""
-    <p>Skyframe is a free falling-block puzzle game. It has no ads, no in-app purchases, no
-      analytics and no tracking, and it never sells data. This policy explains the little data the
+    <p>Skyframe is a free falling-block puzzle game. It has no ads, no in-app purchases and no
+      tracking across other apps or sites, and it never sells data. It counts how the game is
+      played only if you allow it (see Usage analytics). This policy explains the little data the
       game does handle, and your rights over it.</p>
 
     <h2>Who is responsible</h2>
@@ -60,7 +61,8 @@ PRIVACY = f"""
 
     <h2>Data that stays on your device</h2>
     <p>Your progress (stages unlocked, best scores, My scores), settings (language, look, sound) and
-      the name and flag you last used are saved only on your device. They never leave it, and they
+      the name and flag you last used, and the year of birth you enter when the game first opens,
+      are saved only on your device. They never leave it, and they
       are removed when you uninstall the game or clear the site's data.</p>
 
     <h2>Data used for the World high-score board</h2>
@@ -80,10 +82,29 @@ PRIVACY = f"""
     <p>The flag starts as the region set on your device (for example, Israel for "Hebrew (Israel)").
       The game never uses your location.</p>
 
+    <h2>Usage analytics</h2>
+    <p>The first time the game opens, it asks whether it may count how the game is played. If you
+      choose <strong>Allow</strong>, it sends events such as a stage started or ended, the score,
+      the stars, a power-up used, a setting changed, and your settings (language, look, sound,
+      colour-blind mode), with the platform (web, iPhone or Android). A random ID on your device
+      links your events, and if you have a board account, its player ID, so your web and app play
+      join up. No name, email or typed text is ever sent. You can change your answer at any time in
+      Settings &rarr; <strong>Usage data</strong>.</p>
+    <p>If you choose <strong>No thanks</strong> or haven't answered yet, the app sends nothing. The
+      web version still counts visits without cookies or browser storage: our provider tells a
+      day's visitors apart by a code it makes on its servers, which identifies no person.</p>
+    <p>Players under 16 are never asked, and nothing at all is sent for them, on the web either
+      (see Children).</p>
+    <p>Analytics runs on PostHog's EU cloud, our processor, which stores the data in the European
+      Union. IP addresses are anonymised; the country is read from the IP before it is dropped.
+      Session recordings and automatic click tracking are off. Events are kept for one year.</p>
+
     <h2>Legal basis</h2>
     <p>We process this data to provide the board and the account you asked for (performance of a
       contract, GDPR Art. 6(1)(b)), and to keep the board safe and free of abuse (legitimate
-      interests, Art. 6(1)(f)).</p>
+      interests, Art. 6(1)(f)). Usage analytics with an ID runs only with your consent (Art.
+      6(1)(a)), which you can withdraw in Settings at any time; the web's count without cookies
+      rests on our legitimate interest in knowing how many people play (Art. 6(1)(f)).</p>
 
     <h2>Who processes the data</h2>
     <p>The board and accounts run on Google Firebase (Cloud Firestore and Firebase Authentication),
@@ -96,7 +117,7 @@ PRIVACY = f"""
     <h2>How long we keep it</h2>
     <p>Your board entry and account stay until you delete them. Reports are deleted once reviewed,
       within 90 days. After you delete your account, copies in our provider's backups are erased
-      on its normal schedule (Google states up to 180 days).</p>
+      on its normal schedule (Google states up to 180 days). Usage analytics events are deleted after one year.</p>
 
     <h2>Your rights</h2>
     <p>You can delete your account and board entry at any time in the game: open the menu, tap the
@@ -107,13 +128,24 @@ PRIVACY = f"""
       You can complain to the data protection authority where you live or work.</p>
 
     <h2>Children</h2>
-    <p>Skyframe is meant for players 13 and older. We do not knowingly collect data from children
-      under 13; if you believe a child has saved a score, write to us and we will delete it.</p>
+    <p>Skyframe is for players of every age. When it first opens, it asks the year you were born;
+      the answer stays on your device and decides what the game may send:</p>
+    <ul>
+      <li><strong>Under 13:</strong> the game makes up the name shown on the World board (for
+        example BRAVEHAWK42), so a child never types a name others see. There is no sign-in with
+        Apple or Google and no usage analytics. If a child saves a score, the board holds only that
+        made-up name, the flag chosen (or none), the score and a random player ID.</li>
+      <li><strong>13 to 15:</strong> no usage analytics. The World board works as for everyone.</li>
+    </ul>
+    <p>A parent or guardian can delete a child's board entry in the game (person button &rarr;
+      <strong>Delete my account</strong>) or ask us by email at
+      <a href="mailto:{EMAIL}">{EMAIL}</a>; we delete it within one month.</p>
 
     <h2>Cookies and browser storage</h2>
     <p>The web version stores your progress and, if you save a score, your Firebase session in
-      your browser's storage. This is strictly necessary for the features you use; there are no
-      advertising or analytics cookies.</p>
+      your browser's storage. This is strictly necessary for the features you use. If you allow
+      usage analytics, PostHog's ID is kept there too; without your permission it is not. There
+      are no advertising cookies.</p>
 
     <h2>Changes</h2>
     <p>If this policy changes, the new version is posted here with a new date.</p>
