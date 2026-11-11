@@ -1,7 +1,7 @@
 """Builds the Skyframe pages: one header and footer, each page's body below. Run: python3 build.py"""
 
 EMAIL = "skyframe1992@gmail.com"
-UPDATED = "November 10, 2026"
+UPDATED = "November 11, 2026"
 
 PAGES = [
     ("index.html", "Privacy policy"),
@@ -74,13 +74,15 @@ PRIVACY = f"""
         <tr><td>A player ID: a random ID that Firebase gives your device (a "guest" account) the first time you save a score</td><td>To know which board entry is yours</td><td>Only us and our provider</td></tr>
         <tr><td>The name you type (3–12 characters) and the flag you choose (a country code, or none)</td><td>To show your entry on the board</td><td><strong>Everyone who opens the board</strong></td></tr>
         <tr><td>Your best score, the stage it reached, the incoming threat you played against, and when it was saved</td><td>To rank the board</td><td>Score: everyone. The rest: only us</td></tr>
-        <tr><td>If you sign in with Apple (iPhone, iPad) or Google (Android): the account identifier that Apple or Google gives the game, and, for Google, your email address. Skyframe asks Apple for no name and no email.</td><td>To keep your entry when you change phones</td><td>Only us and our provider</td></tr>
+        <tr><td>If you sign in with Apple (iPhone, iPad) or Google (Android): the account identifier that Apple or Google gives the game, and, for Google, your email address and the name on your Google account. Skyframe asks Apple for no name and no email.</td><td>To keep your entry when you change phones</td><td>Only us and our provider</td></tr>
         <tr><td>If you report a name: the reported player's ID and name, and the time. Who reported is not stored.</td><td>To review names that may break the rules</td><td>Only us</td></tr>
         <tr><td>Technical data such as your IP address and device type, handled by our provider when the game connects</td><td>Security and abuse prevention</td><td>Only our provider</td></tr>
       </tbody>
     </table>
     <p>The flag starts as the region set on your device (for example, Israel for "Hebrew (Israel)").
-      The game never uses your location.</p>
+      The game never asks for your device's location (no GPS). Only if you allow usage analytics,
+      an approximate location (country and city) is worked out from your IP address (see Usage
+      analytics).</p>
 
     <h2>Usage analytics</h2>
     <p>The first time the game opens, it asks whether it may count how the game is played. If you
@@ -96,7 +98,10 @@ PRIVACY = f"""
     <p>Players under 16 are never asked, and nothing at all is sent for them, on the web either
       (see Children).</p>
     <p>Analytics runs on PostHog's EU cloud, our processor, which stores the data in the European
-      Union. IP addresses are anonymised; the country is read from the IP before it is dropped.
+      Union. If you allowed analytics, PostHog works out an approximate location (country and
+      city) from your IP address and keeps it with your events; the IP address itself is then
+      dropped (anonymised). Nothing about your location is used for anything but counting where
+      the game is played.
       Session recordings and automatic click tracking are off. Events are kept for one year.</p>
 
     <h2>Legal basis</h2>
@@ -117,7 +122,9 @@ PRIVACY = f"""
     <h2>How long we keep it</h2>
     <p>Your board entry and account stay until you delete them. Reports are deleted once reviewed,
       within 90 days. After you delete your account, copies in our provider's backups are erased
-      on its normal schedule (Google states up to 180 days). Usage analytics events are deleted after one year.</p>
+      on its normal schedule (Google states up to 180 days). Usage analytics events are deleted after one year;
+      when you delete your account, we also delete your analytics profile and its events, within 30
+      days.</p>
 
     <h2>Your rights</h2>
     <p>You can delete your account and board entry at any time in the game: open the menu, tap the
@@ -172,8 +179,8 @@ TERMS = f"""
       their own view of the board.</p>
 
     <h2>Moderation</h2>
-    <p>We review reported names and may, without notice, remove a name or an entry, or block an
-      account from the board, if it breaks these rules or if a score looks impossible. If we remove
+    <p>We review reported names within 24 hours and may, without notice, remove a name or an entry,
+      or block an account from the board, if it breaks these rules or if a score looks impossible. If we remove
       something of yours you can write to us to ask why and to contest it.</p>
 
     <h2>Your account</h2>
@@ -207,15 +214,20 @@ DELETE = f"""
     <p>Email <a href="mailto:{EMAIL}?subject=Delete%20my%20Skyframe%20account">{EMAIL}</a> with the
       subject "Delete my Skyframe account" and include your <strong>player ID</strong> (shown in the
       game under the person button) or, if you no longer have the game, your board name, flag,
-      score and roughly when you saved it. We delete the account within 30 days and confirm by
-      email.</p>
+      score and roughly when you saved it. Player IDs show on the public board, so before deleting
+      on an email request we may ask you to show the account is yours (for example, the name and
+      flag on your entry as the game shows it to you). Deleting in the game is instant and needs no
+      check. We delete the account within 30 days and confirm by email.</p>
 
     <h2>What is deleted</h2>
     <ul>
-      <li>Your online account (guest, Apple or Google sign-in), and for Apple, the game's access
-        to your Apple ID is revoked;</li>
+      <li>Your online account (guest, Apple or Google sign-in), and the game's access to your
+        Apple ID or Google account is revoked;</li>
       <li>your entry on the World board: name, flag, score and its details;</li>
-      <li>any reports filed about your name.</li>
+      <li>any reports filed about your name (removed by us when we review them, within 30 days of
+        the deletion);</li>
+      <li>your usage analytics profile and its events, if you allowed analytics (deleted by us
+        within 30 days of the deletion).</li>
     </ul>
     <h2>What is kept</h2>
     <p>Nothing on our side. Copies in our provider's (Google Firebase) backups are erased on its
